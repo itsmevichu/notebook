@@ -95,7 +95,7 @@ const createNew: JupyterFrontEndPlugin<void> = {
     };
     const menubar = new MenuBar(overflowOptions);
     const newMenu = new Menu({ commands });
-    const path = "/workspace/notebook/binder"
+    const path = "/workspace/notebook/binder/";
     newMenu.title.label = trans.__('New');
     newMenu.title.icon = caretDownIcon;
     menubar.addMenu(newMenu);
