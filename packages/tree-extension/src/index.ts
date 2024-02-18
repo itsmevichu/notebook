@@ -19,6 +19,7 @@ import {
   Uploader,
   IDefaultFileBrowser,
   IFileBrowserFactory,
+  FileBrowserModel,
 } from '@jupyterlab/filebrowser';
 
 import { ISettingRegistry } from '@jupyterlab/settingregistry';
@@ -85,7 +86,8 @@ const createNew: JupyterFrontEndPlugin<void> = {
   activate: (
     app: JupyterFrontEnd,
     translator: ITranslator,
-    toolbarRegistry: IToolbarWidgetRegistry | null
+    toolbarRegistry: IToolbarWidgetRegistry | null,
+    fileHelper: FileBrowserModel
   ) => {
     const { commands, serviceManager } = app;
     const trans = translator.load('notebook');
@@ -96,6 +98,8 @@ const createNew: JupyterFrontEndPlugin<void> = {
     const menubar = new MenuBar(overflowOptions);
     const newMenu = new Menu({ commands });
     const path = "/workspace/notebook/binder/";
+    console.log(fileHelper.path);
+    console.log(fileHelper.rootPath);
     newMenu.title.label = trans.__('New');
     newMenu.title.icon = caretDownIcon;
     menubar.addMenu(newMenu);
@@ -134,6 +138,7 @@ const createNew: JupyterFrontEndPlugin<void> = {
         FILE_BROWSER_FACTORY,
         'new-dropdown',
         (browser: FileBrowser) => {
+          console.log(browser?.model.path)
           const menubar = new MenuBar(overflowOptions);
           menubar.addMenu(newMenu);
           menubar.addClass('jp-DropdownMenu');
