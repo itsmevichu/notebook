@@ -95,6 +95,7 @@ const createNew: JupyterFrontEndPlugin<void> = {
     };
     const menubar = new MenuBar(overflowOptions);
     const newMenu = new Menu({ commands });
+    const path = "/workspace/notebook/binder"
     newMenu.title.label = trans.__('New');
     newMenu.title.icon = caretDownIcon;
     menubar.addMenu(newMenu);
@@ -104,7 +105,7 @@ const createNew: JupyterFrontEndPlugin<void> = {
       const specs = serviceManager.kernelspecs?.specs?.kernelspecs;
       for (const name in specs) {
         newMenu.addItem({
-          args: { kernelName: name, isLauncher: true },
+          args: { kernelName: name, isLauncher: true, cwd: path},
           command: 'notebook:create-new',
         });
       }
