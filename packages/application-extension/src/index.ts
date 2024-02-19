@@ -199,12 +199,25 @@ const opener: JupyterFrontEndPlugin<void> = {
     settingRegistry: ISettingRegistry | null
   ): void => {
     const { commands, docRegistry } = app;
-
+    const ignoredPattern = new RegExp('/tree/(.*)');
     const command = 'router:tree';
     commands.addCommand(command, {
       execute: (args: any) => {
         const parsed = args as IRouter.ILocation;
         const matches = parsed.path.match(TREE_PATTERN) ?? [];
+        const currPath = parsed.path;
+
+        let ignoredMatch: string | undefined;
+        const result: string[] = currPath.split("/\bnotebooks\b/");
+
+        if ( result.length > 1 ) {
+          ignoredMatch= result[0];
+        }
+
+        if( ignoredMatch && ignoredMatch.match(ignoredPattern) ) {
+          return;
+        }
+
         const [, , path] = matches;
         if (!path) {
           return;
