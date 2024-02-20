@@ -207,6 +207,7 @@ const opener: JupyterFrontEndPlugin<void> = {
         const matches = parsed.path.match(TREE_PATTERN) ?? [];
         const [, isTreePath, keyword, after] = parsed.path.match(ignoredPattern) ?? [];
 
+        console.log(parsed.path.match(ignoredPattern));
         console.log(isTreePath);
         console.log(keyword);
         console.log(after);
