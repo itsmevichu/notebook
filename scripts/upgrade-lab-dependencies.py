@@ -42,6 +42,7 @@ def update_package_json(new_version):
 
         with open(path, 'w') as file:
             json.dump(existing_package_json, file, indent=2)
+            file.write('\n') 
 
 
 def update_dependencies(existing_json, new_json):
