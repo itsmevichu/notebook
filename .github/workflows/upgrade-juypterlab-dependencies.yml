@@ -81,6 +81,6 @@ jobs:
             git commit . -m "Update to JupyterLab v${LATEST}"
 
             git push --set-upstream origin "${BRANCH_NAME}"            
-            hub pull-request -m "Update to JupyterLab v${LATEST}" \
+            hub pull-request -b itsmevichu:main -m "Update to JupyterLab v${LATEST}" \
                 -m "New JupyterLab release [v${LATEST}](https://github.com/jupyterlab/jupyterlab/releases/tag/v${LATEST}) is available. Please review the lock file carefully.".
           fi
