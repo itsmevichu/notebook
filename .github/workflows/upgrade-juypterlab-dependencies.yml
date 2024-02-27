@@ -43,7 +43,6 @@ jobs:
 
       - name: Install npm dependencies
         run: |
-          npm install --global yarn
           jlpm install
 
       - name: Check for new releases and update
