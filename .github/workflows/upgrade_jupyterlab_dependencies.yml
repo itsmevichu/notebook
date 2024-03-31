@@ -41,13 +41,10 @@ jobs:
         with:
           node-version: '20.x'
 
-      - name: Run Build
-        run: |
-          jlpm run build
-
-      - name: Install npm dependencies
+      - name: Install npm dependencies and build
         run: |
           jlpm install
+          jlpm run build
 
       - name: Check for new releases and update
         shell: bash
