@@ -44,7 +44,7 @@ jobs:
       - name: Install npm dependencies and build
         run: |
           jlpm install
-          jlpm run build
+          jlpm run build:utils
 
       - name: Check for new releases and update
         shell: bash
